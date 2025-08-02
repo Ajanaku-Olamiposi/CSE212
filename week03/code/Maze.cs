@@ -1,3 +1,6 @@
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+
 /// <summary>
 /// Defines a maze using a dictionary. The dictionary is provided by the
 /// user when the Maze object is created. The dictionary will contain the
@@ -32,7 +35,20 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
-        // FILL IN CODE
+        var key = (_currX, _currY);
+        if (_mazeMap.ContainsKey(key))
+        {
+            bool[] directions = _mazeMap[key];
+            if (!directions[0])
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+            _currX -= 1;
+        }
+        else
+        {
+            throw new InvalidOperationException("Invalid maze position!");
+        }
     }
 
     /// <summary>
@@ -41,7 +57,20 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
+        var key = (_currX, _currY);
+        if (_mazeMap.ContainsKey(key))
+        {
+            bool[] directions = _mazeMap[key];
+            if (!directions[1])
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+            _currX += 1;
+        }
+        else
+        {
+            throw new InvalidOperationException("Invalid maze position!");
+        }
     }
 
     /// <summary>
@@ -50,7 +79,20 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
+        var key = (_currX, _currY);
+        if (_mazeMap.ContainsKey(key))
+        {
+            bool[] directions = _mazeMap[key];
+            if (!directions[2])
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+            _currY -= 1;
+        }
+        else
+        {
+            throw new InvalidOperationException("Invalid maze position!");
+        }
     }
 
     /// <summary>
@@ -59,7 +101,20 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
+        var key = (_currX, _currY);
+        if (_mazeMap.ContainsKey(key))
+        {
+            bool[] directions = _mazeMap[key];
+            if (!directions[3])
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+            _currY += 1;
+        }
+        else
+        {
+            throw new InvalidOperationException("Invalid maze position!");
+        }
     }
 
     public string GetStatus()
